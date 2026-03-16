@@ -1,0 +1,25 @@
+FROM python:3.11-slim
+
+# Abhängigkeiten installieren
+RUN apt-get update && apt-get install -y curl
+
+# ollama CLI installieren
+RUN curl -fsSL https://ollama.com/install.sh | sh
+
+# Arbeitsverzeichnis setzen
+WORKDIR /app
+
+# Python-Abhängigkeiten (Flask)
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+# API Server in Container kopieren
+COPY ex_08_api_server.py .
+
+# Startup script erstellen
+COPY start.sh .
+RUN chmod +x start.sh
+
+EXPOSE 5001
+
+CMD ["./start.sh"]

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Client</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .response-section {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 4px;
+        }
+        .response-success {
+            background-color: #e8f5e8;
+            border: 1px solid #4CAF50;
+        }
+        .response-error {
+            background-color: #ffe8e8;
+            border: 1px solid #f44336;
+            color: #d32f2f;
+        }
+        .response-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .response-text {
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>API Client Interface</h1>
+        
+        <form method="POST">
+            <div class="form-group">
+                <label for="user_input">Enter your message:</label>
+                <input type="text" id="user_input" name="user_input" 
+                       value="{{ user_input }}" 
+                       placeholder="Type your message here..."
+                       required>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        
+        {% if response_text %}
+        <div class="response-section response-success">
+            <div class="response-title">API Response:</div>
+            <div class="response-text">{{ response_text }}</div>
+        </div>
+        {% endif %}
+        
+        {% if error_message %}
+        <div class="response-section response-error">
+            <div class="response-title">Error:</div>
+            <div>{{ error_message }}</div>
+        </div>
+        {% endif %}
+        
+        <div style="margin-top: 30px; font-size: 14px; color: #666; text-align: center;">
+            <p>This client communicates with the API server running on port 5001.</p>
+            <p>You can send multiple requests by entering new messages and clicking Submit.</p>
+        </div>
+    </div>
+</body>
+</html>
+

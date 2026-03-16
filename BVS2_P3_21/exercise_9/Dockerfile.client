@@ -1,0 +1,9 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+COPY ex_09_client.py /app/
+RUN pip install flask requests
+
+ENTRYPOINT []
+CMD ["python", "ex_09_client.py"]

@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    command: ["ollama", "serve"]
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+
+  api_server:
+    build:
+      context: .
+    command: ["python", "ex_09_api_server.py"]
+    depends_on:
+      - ollama
+    ports:
+      - "5004:5004"
+    environment:
+      - OLLAMA_API_URL=http://ollama:11434
+
+  client:
+    build:
+      context: .
+    command: ["python", "ex_09_client.py"]
+    depends_on:
+      - api_server
+    ports:
+      - "5003:5003"
+
+volumes:
+  ollama-data:
+
