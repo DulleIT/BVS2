@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import google.generativeai as genai
 
-GEMINI_API_KEY = "AIzaSyAXc7u2Q2qKcNfouKyEWG3yaHQhI5J-MUw"
+GEMINI_API_KEY = ""
 genai.configure(api_key=GEMINI_API_KEY)
 
 def fetch_wikipedia(title):
